@@ -4,19 +4,38 @@
   align-items: center;
   height: 100vh;
   background-color: #231F20;
-  font-family: "Quicksand";
+  font-family: "Archivo";
   background-image: url(../public/mountains.png);
-  background-repeat: no-repeat;
-  background-size: 110vw;
-  background-position: -9vw 24vw;
+  background-repeat:no-repeat;
+  background-size:130vw;
+  background-position:bottom;
+  background-position-x: right;
+  background-blend-mode:screen;
+}
+
+.title_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 34vh;
+  gap: .5vw;
+}
+
+.landslide {
+  color:#FB3640;
+  margin-top: 1.5vw;
 }
 
 .title {
-  margin-top: 21vw;
   color: #F3E9DC;
-  font-size: 5vw;
+  font-size: 4.8vw;
   margin-bottom: 1.5vw;
 }
+
+.title:hover {
+  cursor:default;
+}
+
 
 .main_form {
   display: flex;
@@ -25,14 +44,14 @@
 }
 
 .main_form > input {
-  width: 25vw;
-  height: 4vh;
+  width: 26vw;
+  height: 2vw;
   outline-color: transparent;
   border-color: transparent;
   border-top-left-radius: .3vw;
   border-bottom-left-radius: .3vw;
   background-color: #F3E9DC;
-  font-family: "Quicksand";
+  font-family: "Archivo";
   font-weight: 500;
   font-size: 1vw;
   padding-left: 1vw;
@@ -43,18 +62,19 @@
 }
 
 .main_form > button {
-  height: 4.7vh;
+  height: 100%;
   width: 6vw;
-  outline-color: transparent;
   border-color: transparent;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   background-color: #FB3640;
   color:#F3E9DC;
-  font-family: "Quicksand";
-  font-weight: 800;
+  font-family: "Archivo";
+  font-weight: 500;
   font-size: 1vw;
   border-top-right-radius: .3vw;
   border-bottom-right-radius: .3vw;
+}
+
+.main_form > button:hover {
+  cursor: pointer;
+  background-color: #cf2e36;
 }
