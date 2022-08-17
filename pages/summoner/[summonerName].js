@@ -1,8 +1,17 @@
 import React from "react"
+import Head from "next/head"
 
 export default function SummonerPage({ summonerData, rankData, matchesData, matchDataArray }) {
 
     console.log(matchDataArray)
+
+    return (
+        <>
+        <Head>
+            <title>{`${summonerData.name} - Summoner Stats`}</title>
+        </Head>
+        </>
+    )
 
 }
 
