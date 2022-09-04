@@ -1,0 +1,95 @@
+.main_container {
+    height: 100vh;
+    background-color: #231F20;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    font-family: "Archivo";
+    background-image: url(../public/mountains.png);
+    background-repeat: no-repeat;
+    background-size: 130vw;
+    background-position: bottom;
+    background-position-x: right;
+    background-blend-mode: screen;
+}
+
+.container {
+    width: 50vw;
+    display: flex;
+    flex-direction: column;
+    padding-top: 3vw;
+}
+
+.top_container {
+    display: flex;
+    align-items: center;
+    margin-top: 3vw;
+}
+
+.summoner_icon_container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 7vw;
+    width: 7vw;
+    
+}
+
+.summoner_icon {
+    border-radius: 10%;
+}
+
+.summoner_info_container {
+    display: flex;
+    align-items: center;
+    gap: 1vw;
+}
+
+.name_update_container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2vw;
+}
+
+.name_update_container > p {
+    color: #F3E9DC;
+    font-size: 2vw;
+    margin-bottom: 1vw;
+}
+
+.update_button {
+    height: 2.5vw;
+    width: 6.5vw;
+    background-color: #FB3640;
+    border-radius: .3vw;
+    border-color: transparent;
+    font-size: 1.2vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .3vw;
+    font-weight: 400;
+    font-family: "Archivo";
+    color:#F3E9DC;
+}
+
+.update_button:hover {
+    cursor: pointer;
+}
+
+.level_container {
+    position: absolute;
+    z-index: 1;
+    width:2vw;
+    height: 2vw;
+    background-color: #FB3640;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: #F3E9DC;
+    left: 27.5vw;
+    top: 16.4vw;
+    font-size: .8vw;
+    font-weight: 600;
+}

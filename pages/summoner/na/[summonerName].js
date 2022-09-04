@@ -1,21 +1,143 @@
 import React from "react"
 import Head from "next/head"
+import styles from "../../../styles/Summoner.module.css"
+import homeStyles from '../../../styles/Home.module.css'
+import Link from "next/link"
+import Image from "next/image"
+import CloseSharpIcon from '@mui/icons-material/CloseSharp';
+import BrowserUpdatedIcon from '@mui/icons-material/BrowserUpdated';
 
 export default function SummonerPage({ summonerData, rankData, matchesData, matchDataArray }) {
+
+    const [searchText, setSearchText] = React.useState("")
+    const [regionCounter, setRegionCounter] = React.useState("NA")
+    const [openedModal, setOpenedModal] = React.useState(false)
+
+    const updateText = (e) => {
+        setSearchText(e.target.value)
+    }
+
+    const openModal = () => {
+        setOpenedModal(true)
+    }
+
+    const closeModal = () => {
+        setOpenedModal(false)
+    }
+
+    const updateRegion = (region) => {
+        setRegionCounter(region)
+        setOpenedModal(false)
+    }
 
     console.log(matchDataArray)
 
     return (
         <>
-        <Head>
-            <title>{`${summonerData.name} - Summoner Stats`}</title>
-        </Head>
+            <Head>
+                <title>{`${summonerData.name} - Summoner Stats`}</title>
+            </Head>
+            <div className={styles.main_container}>
+                {openedModal &&
+                    <div onClick={closeModal} className={homeStyles.modal}>
+                        <div className={homeStyles.modal_container}>
+                            <div className={homeStyles.modal_header}>
+                                <p>Select a Region</p>
+                                <div className={homeStyles.close_icon_container}>
+                                    <CloseSharpIcon className={homeStyles.close_icon} onClick={closeModal} sx={{ fontSize: "1.2vw", color: "grey" }} />
+                                </div>
+                            </div>
+                            <div className={homeStyles.modal_body}>
+                                <div className={homeStyles.modal_region_container}>
+                                    <h1>AM</h1>
+                                    <h1>EU</h1>
+                                    <h1>AS</h1>
+                                    <h1>OC</h1>
+                                </div>
+                                <div className={homeStyles.container_collection}>
+                                    <div className={homeStyles.modal_regions_container}>
+                                        <div onClick={() => updateRegion("NA")} className={homeStyles.modal_h3_container}>
+                                            <h3>NA</h3>
+                                        </div>
+                                        <div onClick={() => updateRegion("BR")} className={homeStyles.modal_h3_container}>
+                                            <h3>BR</h3>
+                                        </div>
+                                        <div onClick={() => updateRegion("LAN")} className={homeStyles.modal_h3_container}>
+                                            <h3>LAN</h3>
+                                        </div>
+                                        <div onClick={() => updateRegion("LAS")} className={homeStyles.modal_h3_container}>
+                                            <h3>LAS</h3>
+                                        </div>
+                                    </div>
+                                    <div className={homeStyles.modal_regions_container}>
+                                        <div onClick={() => updateRegion("EUW")} className={homeStyles.modal_h3_container}>
+                                            <h3>EUW</h3>
+                                        </div>
+                                        <div onClick={() => updateRegion("EUNE")} className={homeStyles.modal_h3_container}>
+                                            <h3>EUNE</h3>
+                                        </div>
+                                        <div onClick={() => updateRegion("RU")} className={homeStyles.modal_h3_container}>
+                                            <h3>RU</h3>
+                                        </div>
+                                    </div>
+                                    <div className={homeStyles.modal_regions_container}>
+                                        <div onClick={() => updateRegion("KR")} className={homeStyles.modal_h3_container}>
+                                            <h3>KR</h3>
+                                        </div>
+                                        <div onClick={() => updateRegion("TR")} className={homeStyles.modal_h3_container}>
+                                            <h3>TR</h3>
+                                        </div>
+                                        <div onClick={() => updateRegion("JP")} className={homeStyles.modal_h3_container}>
+                                            <h3>JP</h3>
+                                        </div>
+                                    </div>
+                                    <div className={homeStyles.modal_regions_container}>
+                                        <div onClick={() => updateRegion("OC")} className={homeStyles.modal_h3_container}>
+                                            <h3>OC</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+                <div className={styles.container}>
+                    <form className={homeStyles.main_form}>
+                        <div className={homeStyles.region_selector_container}>
+                            <div onClick={openModal} className={homeStyles.p_container}>
+                                <p>{regionCounter}</p>
+                            </div>
+                        </div>
+                        <input onChange={(e) => updateText(e)} type="text" placeholder="Summoner Name..." value={searchText} />
+                        <Link href={`/summoner/${regionCounter.toLowerCase()}/${searchText}`}>
+                            <button>Search</button>
+                        </Link>
+                    </form>
+                    <div className={styles.top_container}>
+                        <div className={styles.summoner_info_container}>
+                            <div className={styles.level_container}>
+                                <p>{summonerData.summonerLevel}</p>
+                            </div>
+                            <div className={styles.summoner_icon_container}>
+                                <Image className={styles.summoner_icon} src={`http://ddragon.leagueoflegends.com/cdn/12.16.1/img/profileicon/${summonerData.profileIconId}.png`} height={150} width={150} />
+                            </div>
+                            <div className={styles.name_update_container}>
+                                <p>{summonerData.name}</p>
+                                <button className={styles.update_button}>
+                                    <BrowserUpdatedIcon sx={{fontSize: "1.5vw", color: "#F3E9DC"}}/>
+                                    Update
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </>
     )
 
 }
 
-export async function getServerSideProps({params, res}) {
+export async function getServerSideProps({ params, res }) {
 
     res.setHeader(
         "Cache-Control",
@@ -30,7 +152,7 @@ export async function getServerSideProps({params, res}) {
     const matchesData = await matchesResponse.json()
     const rankResponse = await fetch(`https://na1.api.riotgames.com/lol/league/v4/entries/by-summoner/${summonerData.id}?api_key=${process.env.RIOT_API}`)
     const rankData = await rankResponse.json()
-    const matchDataArray = matchesData.map(async(match) => {
+    const matchDataArray = matchesData.map(async (match) => {
         const response = await fetch(`https://americas.api.riotgames.com/lol/match/v5/matches/${match}?api_key=${process.env.RIOT_API}`)
         const data = await response.json()
         return data
