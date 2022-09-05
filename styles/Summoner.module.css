@@ -20,10 +20,13 @@
     padding-top: 3vw;
 }
 
+.summoner_container {
+    display: flex;
+}
+
 .top_container {
     display: flex;
-    align-items: center;
-    margin-top: 3vw;
+    margin-top: 1.5vw;
 }
 
 .summoner_icon_container {
@@ -32,17 +35,20 @@
     justify-content: center;
     height: 7vw;
     width: 7vw;
-    
 }
 
 .summoner_icon {
     border-radius: 10%;
+    height:7vw;
+    width: 7vw;
+    border: .3vw solid #FB3640;
 }
 
 .summoner_info_container {
     display: flex;
     align-items: center;
     gap: 1vw;
+    width: 21.3vw;
 }
 
 .name_update_container {
@@ -52,7 +58,7 @@
 }
 
 .name_update_container > p {
-    color: #F3E9DC;
+    color: white;
     font-size: 2vw;
     margin-bottom: 1vw;
 }
@@ -70,7 +76,7 @@
     gap: .3vw;
     font-weight: 400;
     font-family: "Archivo";
-    color:#F3E9DC;
+    color:white;
 }
 
 .update_button:hover {
@@ -87,9 +93,26 @@
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-    color: #F3E9DC;
+    color: white;
     left: 27.5vw;
-    top: 16.4vw;
+    top: 15.1vw;
     font-size: .8vw;
     font-weight: 600;
+}
+
+.rank_container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 1.5vw;
+    gap: 2vw;
+}
+
+.mid_container {
+    display: flex;
+    align-items: center;
+}
+
+.home_button:hover {
+    cursor: pointer;
 }

@@ -6,12 +6,17 @@ import Link from "next/link"
 import Image from "next/image"
 import CloseSharpIcon from '@mui/icons-material/CloseSharp';
 import BrowserUpdatedIcon from '@mui/icons-material/BrowserUpdated';
+import LandscapeSharpIcon from '@mui/icons-material/LandscapeSharp';
+import HomeSharpIcon from '@mui/icons-material/HomeSharp';
+import Solo from "../../../components/Solo.js"
+import Flex from "../../../components/Flex.js"
 
 export default function SummonerPage({ summonerData, rankData, matchesData, matchDataArray }) {
 
     const [searchText, setSearchText] = React.useState("")
     const [regionCounter, setRegionCounter] = React.useState("NA")
-    const [openedModal, setOpenedModal] = React.useState(false)
+    const [openedModal, 
+        setOpenedModal] = React.useState(false)
 
     const updateText = (e) => {
         setSearchText(e.target.value)
@@ -30,6 +35,37 @@ export default function SummonerPage({ summonerData, rankData, matchesData, matc
         setOpenedModal(false)
     }
 
+    const rankElementArrayTracker = []
+
+    let rankElementArray = rankData.map((rankedInfo) => {
+        if (rankedInfo.queueType === "RANKED_SOLO_5x5") {
+            rankElementArrayTracker.push("Solo")
+            return <Solo key={rankedInfo.leagueId} exists={true} tier={rankedInfo.tier} leaguePoints={rankedInfo.leaguePoints} rank={rankedInfo.rank} wins={rankedInfo.wins} losses={rankedInfo.losses} />
+        } else if (rankedInfo.queueType === "RANKED_FLEX_SR") {
+            rankElementArrayTracker.push("Flex")
+            return <Flex key={rankedInfo.leagueId} exists={true} tier={rankedInfo.tier} leaguePoints={rankedInfo.leaguePoints} rank={rankedInfo.rank} wins={rankedInfo.wins} losses={rankedInfo.losses} />
+        } else {
+            return <></>
+        }
+    })
+
+    
+    if(rankElementArrayTracker.includes("Solo") && rankElementArrayTracker.includes("Flex")) {
+        if(rankElementArrayTracker.indexOf("Solo") > rankElementArrayTracker.indexOf("Flex")) {
+            const temp = rankElementArray[rankElementArrayTracker.indexOf("Solo")]
+            rankElementArray[rankElementArrayTracker.indexOf("Solo")] = rankElementArray[rankElementArrayTracker.indexOf("Flex")]
+            rankElementArray[rankElementArrayTracker.indexOf("Flex")] = temp
+        }
+    }
+
+    if (!rankElementArrayTracker.includes("Solo")) {
+        rankElementArray.unshift(<Solo />)
+    }
+
+    if (!rankElementArrayTracker.includes("Flex")) {
+        rankElementArray.push(<Flex />)
+    }
+
     console.log(matchDataArray)
 
     return (
@@ -38,6 +74,9 @@ export default function SummonerPage({ summonerData, rankData, matchesData, matc
                 <title>{`${summonerData.name} - Summoner Stats`}</title>
             </Head>
             <div className={styles.main_container}>
+                <Link href="/">
+                    <HomeSharpIcon className={styles.home_button} sx={{ fontSize: "4vw", color: "#FB3640", position: "absolute", bottom: "1vw", right: "1vw" }} />
+                </Link>
                 {openedModal &&
                     <div onClick={closeModal} className={homeStyles.modal}>
                         <div className={homeStyles.modal_container}>
@@ -119,15 +158,20 @@ export default function SummonerPage({ summonerData, rankData, matchesData, matc
                                 <p>{summonerData.summonerLevel}</p>
                             </div>
                             <div className={styles.summoner_icon_container}>
-                                <Image className={styles.summoner_icon} src={`http://ddragon.leagueoflegends.com/cdn/12.16.1/img/profileicon/${summonerData.profileIconId}.png`} height={150} width={150} />
+                                <img className={styles.summoner_icon} alt="Summoner Icon" src={`/profile_icons/${summonerData.profileIconId}.png`}/>
                             </div>
                             <div className={styles.name_update_container}>
                                 <p>{summonerData.name}</p>
                                 <button className={styles.update_button}>
-                                    <BrowserUpdatedIcon sx={{fontSize: "1.5vw", color: "#F3E9DC"}}/>
+                                    <BrowserUpdatedIcon sx={{ fontSize: "1.5vw", color: "#F3E9DC" }} />
                                     Update
                                 </button>
                             </div>
+                        </div>
+                    </div>
+                    <div className={styles.mid_container}>
+                        <div className={styles.rank_container}>
+                            {rankElementArray}
                         </div>
                     </div>
                 </div>

@@ -1,0 +1,95 @@
+.container_ranked {
+    font-family: "Archivo";
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background-color: white;
+    border: .1vw solid white;
+    border-radius: .3vw;
+    padding: .2vw .4vw;
+    padding-bottom: .6vw;
+    color: #231F20;
+    width: 19vw;
+    gap: 1vw;
+}
+
+.container_unranked {
+    font-family: "Archivo";
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: white;
+    border: .1vw solid white;
+    border-radius: .3vw;
+    color: #231F20;
+    width: 100%;
+}
+
+.wins_losses {
+    margin-top: 2vw;
+    margin-bottom: -.6vw;
+}
+
+.ranked_left_info {
+    display: flex;
+    align-items: center;
+    gap: .2vw;
+}
+
+.ranked_right_info {
+    font-weight: 500;
+    margin-right: .3vw;
+    font-size: .9vw;
+}
+
+.rank_info {
+    display: flex;
+    flex-direction: column;
+}
+
+.rank_info > h2 {
+    margin-bottom: -.8vw;
+    margin-top: 2vw;
+    font-size: 1.21vw;
+}
+
+.rank_info > p {
+    font-weight: 600;
+    color: rgba(63, 63, 63, 0.452);
+    font-size: .9vw;
+}
+
+.unranked_left_info {
+    font-weight: 700;
+    font-size: .9vw;
+    margin-left: .4vw;
+}
+
+.unranked_right_info {
+    font-weight: 700;
+    font-size: .9vw;
+    color: rgba(63, 63, 63, 0.452);
+    margin-left: 9.2vw;
+}
+
+.rank_icon {
+    width: 5vw;
+    height: 5vw;
+    margin-top: -.8vw;
+    margin-left: -.3vw;
+}
+
+.title_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.title_container > p {
+    font-weight: 700;
+    font-size: .9vw;
+    margin-top: .3vw;
+    color: #231F20;
+}
