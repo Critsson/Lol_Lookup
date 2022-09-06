@@ -39,7 +39,7 @@
 
 .summoner_icon {
     border-radius: 10%;
-    height:7vw;
+    height: 7vw;
     width: 7vw;
     border: .3vw solid #FB3640;
 }
@@ -57,7 +57,7 @@
     margin-bottom: 2vw;
 }
 
-.name_update_container > p {
+.name_update_container>p {
     color: white;
     font-size: 2vw;
     margin-bottom: 1vw;
@@ -76,7 +76,7 @@
     gap: .3vw;
     font-weight: 400;
     font-family: "Archivo";
-    color:white;
+    color: white;
 }
 
 .update_button:hover {
@@ -86,7 +86,7 @@
 .level_container {
     position: absolute;
     z-index: 1;
-    width:2vw;
+    width: 2vw;
     height: 2vw;
     background-color: #FB3640;
     display: flex;
@@ -110,9 +110,18 @@
 
 .mid_container {
     display: flex;
-    align-items: center;
+    gap: 5vw;
 }
 
 .home_button:hover {
     cursor: pointer;
+}
+
+.matches_container {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border-radius: .2vw;
+    border: .1vw solid transparent;
+    margin-top: 1.4vw;
 }

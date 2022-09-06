@@ -10,7 +10,7 @@ export default function Solo(props) {
         if (props.exists === true) {
             setExists(true)
         }
-    })
+    }, [])
 
     return (
         <>

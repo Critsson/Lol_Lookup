@@ -3,19 +3,18 @@ import Head from "next/head"
 import styles from "../../../styles/Summoner.module.css"
 import homeStyles from '../../../styles/Home.module.css'
 import Link from "next/link"
-import Image from "next/image"
 import CloseSharpIcon from '@mui/icons-material/CloseSharp';
 import BrowserUpdatedIcon from '@mui/icons-material/BrowserUpdated';
-import LandscapeSharpIcon from '@mui/icons-material/LandscapeSharp';
 import HomeSharpIcon from '@mui/icons-material/HomeSharp';
 import Solo from "../../../components/Solo.js"
 import Flex from "../../../components/Flex.js"
+import Match from "../../../components/Match.js"
 
 export default function SummonerPage({ summonerData, rankData, matchesData, matchDataArray }) {
 
     const [searchText, setSearchText] = React.useState("")
     const [regionCounter, setRegionCounter] = React.useState("NA")
-    const [openedModal, 
+    const [openedModal,
         setOpenedModal] = React.useState(false)
 
     const updateText = (e) => {
@@ -49,9 +48,9 @@ export default function SummonerPage({ summonerData, rankData, matchesData, matc
         }
     })
 
-    
-    if(rankElementArrayTracker.includes("Solo") && rankElementArrayTracker.includes("Flex")) {
-        if(rankElementArrayTracker.indexOf("Solo") > rankElementArrayTracker.indexOf("Flex")) {
+
+    if (rankElementArrayTracker.includes("Solo") && rankElementArrayTracker.includes("Flex")) {
+        if (rankElementArrayTracker.indexOf("Solo") > rankElementArrayTracker.indexOf("Flex")) {
             const temp = rankElementArray[rankElementArrayTracker.indexOf("Solo")]
             rankElementArray[rankElementArrayTracker.indexOf("Solo")] = rankElementArray[rankElementArrayTracker.indexOf("Flex")]
             rankElementArray[rankElementArrayTracker.indexOf("Flex")] = temp
@@ -75,7 +74,7 @@ export default function SummonerPage({ summonerData, rankData, matchesData, matc
             </Head>
             <div className={styles.main_container}>
                 <Link href="/">
-                    <HomeSharpIcon className={styles.home_button} sx={{ fontSize: "4vw", color: "#FB3640", position: "absolute", bottom: "1vw", right: "1vw" }} />
+                    <HomeSharpIcon className={styles.home_button} sx={{ fontSize: "3vw", color: "#FB3640", position: "absolute", bottom: "1vw", right: "1vw" }} />
                 </Link>
                 {openedModal &&
                     <div onClick={closeModal} className={homeStyles.modal}>
@@ -158,7 +157,7 @@ export default function SummonerPage({ summonerData, rankData, matchesData, matc
                                 <p>{summonerData.summonerLevel}</p>
                             </div>
                             <div className={styles.summoner_icon_container}>
-                                <img className={styles.summoner_icon} alt="Summoner Icon" src={`/profile_icons/${summonerData.profileIconId}.png`}/>
+                                <img className={styles.summoner_icon} alt="Summoner Icon" src={`/profile_icons/${summonerData.profileIconId}.png`} />
                             </div>
                             <div className={styles.name_update_container}>
                                 <p>{summonerData.name}</p>
@@ -172,6 +171,14 @@ export default function SummonerPage({ summonerData, rankData, matchesData, matc
                     <div className={styles.mid_container}>
                         <div className={styles.rank_container}>
                             {rankElementArray}
+                        </div>
+                        <div className={styles.matches_container}>
+                            <Match gameDuration={matchDataArray[1].info.gameDuration} gameMode={matchDataArray[1].info.gameMode}
+                                gameType={matchDataArray[1].info.gameType} mapId={matchDataArray[1].info.mapId} participants={matchDataArray[1].info.participants} puuid={summonerData.puuid}
+                                queueId={matchDataArray[1].info.queueId} />
+                            <Match gameDuration={matchDataArray[2].info.gameDuration} gameMode={matchDataArray[2].info.gameMode}
+                                gameType={matchDataArray[2].info.gameType} mapId={matchDataArray[2].info.mapId} participants={matchDataArray[2].info.participants} puuid={summonerData.puuid}
+                                queueId={matchDataArray[2].info.queueId} />
                         </div>
                     </div>
                 </div>
