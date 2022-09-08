@@ -14,7 +14,7 @@
 }
 
 .container {
-    width: 50vw;
+    width: 36.1vw;
     display: flex;
     flex-direction: column;
     padding-top: 3vw;
@@ -94,7 +94,7 @@
     justify-content: center;
     border-radius: 50%;
     color: white;
-    left: 27.5vw;
+    left: 34.5vw;
     top: 15.1vw;
     font-size: .8vw;
     font-weight: 600;
@@ -105,12 +105,17 @@
     align-items: center;
     flex-direction: column;
     margin-top: 1.5vw;
-    gap: 2vw;
+    min-width: 19vw;
+    align-self: flex-start;
+    padding: 1vw 1vw;
+    background-color: #00000031;
+    border-radius: .3vw;
+    gap: .7vw;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset;
 }
 
 .mid_container {
-    display: flex;
-    gap: 5vw;
+    display: flex; 
 }
 
 .home_button:hover {
@@ -120,7 +125,6 @@
 .matches_container {
     display: flex;
     flex-direction: column;
-    background-color: white;
     border-radius: .2vw;
     border: .1vw solid transparent;
     margin-top: 1.4vw;

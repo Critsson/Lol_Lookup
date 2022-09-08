@@ -30,7 +30,8 @@ export default function Solo(props) {
                     </div>
                     <div className={styles.ranked_right_info}>
                         <p className={styles.wins_losses}>{props.wins}W {props.losses}L</p>
-                        <p>{Math.round((props.wins)/(props.wins+props.losses)*100)}% Winrate</p>
+                        {Math.round((props.wins) / (props.wins + props.losses) * 100) < 50 ? <p className={styles.sub50}>{Math.round((props.wins) / (props.wins + props.losses) * 100)}% Winrate</p>
+                            : <p className={styles.over50}>{Math.round((props.wins) / (props.wins + props.losses) * 100)}% Winrate</p>}
                     </div>
                 </div>
                     :
