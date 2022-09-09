@@ -9,12 +9,23 @@ export default function Match(props) {
 
     let won;
     let participant;
+    let kdaStyle;
 
     for (let i = 0; i < props.participants.length; i++) {
         if (props.participants[i].puuid === props.puuid) {
             won = props.participants[i].win
             participant = props.participants[i]
         }
+    }
+
+    if ((Math.round(((participant.kills + participant.assists) / participant.deaths) * 100) / 100) === Infinity) {
+        kdaStyle = { color: "#FF9B1E", fontWeight: 600, fontSize: ".9vw" }
+    } else if ((Math.round(((participant.kills + participant.assists) / participant.deaths) * 100) / 100) >= 5) {
+        kdaStyle = { color: "#FF9B1E", fontWeight: 600, fontSize: ".9vw" }
+    } else if ((Math.round(((participant.kills + participant.assists) / participant.deaths) * 100) / 100) >= 3) {
+        kdaStyle = { color: "#18BD9B", fontWeight: 600, fontSize: ".9vw" }
+    } else if ((Math.round(((participant.kills + participant.assists) / participant.deaths) * 100) / 100) > 0) {
+        kdaStyle = { color: "white", fontWeight: 600, fontSize: ".9vw" }
     }
 
     React.useEffect(() => {
@@ -50,6 +61,12 @@ export default function Match(props) {
                     gameType: props.gameType, mapId: props.mapId, gameMode: "ARAM"
                 })
                 break;
+            case 1400:
+                setMatchInfo({
+                    participant: participant, won: won, participants: props.participants, gameDuration: `${Math.floor(props.gameDuration / 60)}m ${props.gameDuration % 60}s`,
+                    gameType: props.gameType, mapId: props.mapId, gameMode: "Ultimate Spellbook"
+                })
+                break;
             default:
                 setMatchInfo({
                     participant: participant, won: won, participants: props.participants, gameDuration: `${Math.floor(props.gameDuration / 60)}m ${props.gameDuration % 60}s`,
@@ -62,7 +79,9 @@ export default function Match(props) {
 
     }, [props.puuid])
 
+
     console.log(matchInfo)
+    console.log(kdaStyle)
 
     return (
         <>
@@ -90,6 +109,28 @@ export default function Match(props) {
                             </div>
                             <div className={styles.summ_container}>
                                 <Image src={`/../public/summoner_spells/${matchInfo.participant.summoner2Id}.png`} width={200} height={200} />
+                            </div>
+                        </div>
+                        <div className={styles.perks_container}>
+                            <div className={styles.perk1_container}>
+                                <Image src={`/../public/perk_icons/${matchInfo.participant.perks.styles[0].selections[0].perk}.png`} width={200} height={200} />
+                            </div>
+                            <div className={styles.perk2_container}>
+                                <Image src={`/../public/perk_icons/${matchInfo.participant.perks.styles[1].style}.png`} width={200} height={200} />
+                            </div>
+                        </div>
+                        <div className={styles.score_container}>
+                            <div className={styles.kda_container}>
+                                <h3 className={styles.killsandassists}>{matchInfo.participant.kills}</h3>
+                                <h3 className={styles.divider}>/</h3>
+                                <h3 className={styles.deaths}>{matchInfo.participant.deaths}</h3>
+                                <h3 className={styles.divider}>/</h3>
+                                <h3 className={styles.killsandassists}>{matchInfo.participant.assists}</h3>
+                            </div>
+                            <div className={styles.kda_calc_container}>
+                                {(matchInfo.participant.kills + matchInfo.participant.assists) / matchInfo.participant.deaths === Infinity ? <p style={kdaStyle}>Perfect</p>
+                                    : <p style={kdaStyle}>{(Math.round(((matchInfo.participant.kills + matchInfo.participant.assists) / matchInfo.participant.deaths) * 100) / 100)}</p>}
+                                <p className={styles.kda_word}>KDA</p>
                             </div>
                         </div>
                     </div>
