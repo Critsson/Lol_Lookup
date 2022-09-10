@@ -173,12 +173,12 @@ export default function SummonerPage({ summonerData, rankData, matchesData, matc
                             {rankElementArray}
                         </div>
                         <div className={styles.matches_container}>
-                            <Match gameDuration={matchDataArray[1].info.gameDuration} gameMode={matchDataArray[1].info.gameMode}
+                            <Match region={regionCounter} gameDuration={matchDataArray[0].info.gameDuration} gameMode={matchDataArray[0].info.gameMode}
+                                gameType={matchDataArray[0].info.gameType} mapId={matchDataArray[0].info.mapId} participants={matchDataArray[0].info.participants} puuid={summonerData.puuid}
+                                queueId={matchDataArray[0].info.queueId} />
+                            <Match region={regionCounter} gameDuration={matchDataArray[1].info.gameDuration} gameMode={matchDataArray[1].info.gameMode}
                                 gameType={matchDataArray[1].info.gameType} mapId={matchDataArray[1].info.mapId} participants={matchDataArray[1].info.participants} puuid={summonerData.puuid}
                                 queueId={matchDataArray[1].info.queueId} />
-                            <Match gameDuration={matchDataArray[2].info.gameDuration} gameMode={matchDataArray[2].info.gameMode}
-                                gameType={matchDataArray[2].info.gameType} mapId={matchDataArray[2].info.mapId} participants={matchDataArray[2].info.participants} puuid={summonerData.puuid}
-                                queueId={matchDataArray[2].info.queueId} />
                         </div>
                     </div>
                 </div>

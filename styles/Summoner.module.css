@@ -94,7 +94,7 @@
     justify-content: center;
     border-radius: 50%;
     color: white;
-    left: 34.5vw;
+    left: 20.6vw;
     top: 15.1vw;
     font-size: .8vw;
     font-weight: 600;
@@ -131,6 +131,7 @@
     background-color: #00000031;
     box-shadow: rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset;
     margin-top: 1.5vw;
-    gap: .2vw;
+    gap: 1vw;
     padding: .5vw .8vw;
+    align-self: flex-start;
 }

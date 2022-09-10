@@ -1,6 +1,7 @@
 import React from "react"
 import styles from "../styles/Match.module.css"
 import Image from "next/image"
+import Link from "next/link"
 
 export default function Match(props) {
 
@@ -10,6 +11,9 @@ export default function Match(props) {
     let won;
     let participant;
     let kdaStyle;
+    let csStyle;
+    const firstTeam = [];
+    const secondTeam = [];
 
     for (let i = 0; i < props.participants.length; i++) {
         if (props.participants[i].puuid === props.puuid) {
@@ -18,14 +22,72 @@ export default function Match(props) {
         }
     }
 
-    if ((Math.round(((participant.kills + participant.assists) / participant.deaths) * 100) / 100) === Infinity) {
-        kdaStyle = { color: "#FF9B1E", fontWeight: 600, fontSize: ".9vw" }
-    } else if ((Math.round(((participant.kills + participant.assists) / participant.deaths) * 100) / 100) >= 5) {
-        kdaStyle = { color: "#FF9B1E", fontWeight: 600, fontSize: ".9vw" }
+    for (let i = 0; i < 5; i++) {
+        if (props.participants[i].puuid === props.puuid) {
+            firstTeam.push(
+                <div className={styles.participant_container}>
+                    <div className={styles.participant_icon_container}>
+                        <img src={`/champion_icons/${props.participants[i].championName}.png`} />
+                    </div>
+                    <p className={styles.selected_summoner_name}>{props.participants[i].summonerName}</p>
+                </div>
+            )
+            continue;
+        }
+        firstTeam.push(
+            <div className={styles.participant_container}>
+                <div className={styles.participant_icon_container}>
+                    <img src={`/champion_icons/${props.participants[i].championName}.png`} />
+                </div>
+                <Link href={`/summoner/${props.region.toLowerCase()}/${props.participants[i].summonerName}`}>
+                    <p className={styles.non_selected_summoner_name}>{props.participants[i].summonerName}</p>
+                </Link>
+            </div>
+        )
+    }
+
+    for (let i = 5; i < props.participants.length; i++) {
+        if (props.participants[i].puuid === props.puuid) {
+            secondTeam.push(
+                <div className={styles.participant_container}>
+                    <div className={styles.participant_icon_container}>
+                        <img src={`/champion_icons/${props.participants[i].championName}.png`} />
+                    </div>
+                    <p className={styles.selected_summoner_name}>{props.participants[i].summonerName}</p>
+                </div>
+            )
+            continue;
+        }
+        secondTeam.push(
+            <div className={styles.participant_container}>
+                <div className={styles.participant_icon_container}>
+                    <img src={`/champion_icons/${props.participants[i].championName}.png`} />
+                </div>
+                <Link href={`/summoner/${props.region.toLowerCase()}/${props.participants[i].summonerName}`}>
+                    <p className={styles.non_selected_summoner_name}>{props.participants[i].summonerName}</p>
+                </Link>
+            </div>
+        )
+    }
+
+    if ((Math.round(((participant.kills + participant.assists) / participant.deaths) * 100) / 100) >= 5) {
+        kdaStyle = { color: "#FF9B1E", fontWeight: 700, fontSize: ".7vw" }
     } else if ((Math.round(((participant.kills + participant.assists) / participant.deaths) * 100) / 100) >= 3) {
-        kdaStyle = { color: "#18BD9B", fontWeight: 600, fontSize: ".9vw" }
+        kdaStyle = { color: "#18BD9B", fontWeight: 700, fontSize: ".7vw" }
+    } else if ((Math.round(((participant.kills + participant.assists) / participant.deaths) * 100) / 100) >= 2) {
+        kdaStyle = { color: "white", fontWeight: 700, fontSize: ".7vw" }
     } else if ((Math.round(((participant.kills + participant.assists) / participant.deaths) * 100) / 100) > 0) {
-        kdaStyle = { color: "white", fontWeight: 600, fontSize: ".9vw" }
+        kdaStyle = { color: "#E84057", fontWeight: 700, fontSize: ".7vw" }
+    }
+
+    if ((Math.round(((participant.totalMinionsKilled + participant.neutralMinionsKilled) / (props.gameDuration / 60)) * 10) / 10) >= 9) {
+        csStyle = { color: "#FF9B1E", fontWeight: 700, fontSize: ".7vw" }
+    } else if ((Math.round(((participant.totalMinionsKilled + participant.neutralMinionsKilled) / (props.gameDuration / 60)) * 10) / 10) >= 7) {
+        csStyle = { color: "#18BD9B", fontWeight: 700, fontSize: ".7vw" }
+    } else if ((Math.round(((participant.totalMinionsKilled + participant.neutralMinionsKilled) / (props.gameDuration / 60)) * 10) / 10) >= 5 || participant.role === "SUPPORT" || props.queueId === 450) {
+        csStyle = { color: "white", fontWeight: 700, fontSize: ".7vw" }
+    } else if ((Math.round(((participant.totalMinionsKilled + participant.neutralMinionsKilled) / (props.gameDuration / 60)) * 10) / 10) >= 0) {
+        csStyle = { color: "#E84057", fontWeight: 700, fontSize: ".7vw" }
     }
 
     React.useEffect(() => {
@@ -128,10 +190,54 @@ export default function Match(props) {
                                 <h3 className={styles.killsandassists}>{matchInfo.participant.assists}</h3>
                             </div>
                             <div className={styles.kda_calc_container}>
-                                {(matchInfo.participant.kills + matchInfo.participant.assists) / matchInfo.participant.deaths === Infinity ? <p style={kdaStyle}>Perfect</p>
+                                {(matchInfo.participant.kills + matchInfo.participant.assists) / matchInfo.participant.deaths === Infinity ? <p className={styles.perfect} style={kdaStyle}>Perfect</p>
                                     : <p style={kdaStyle}>{(Math.round(((matchInfo.participant.kills + matchInfo.participant.assists) / matchInfo.participant.deaths) * 100) / 100)}</p>}
                                 <p className={styles.kda_word}>KDA</p>
                             </div>
+                            <div className={styles.cs_container}>
+                                <p className={styles.cs}>{matchInfo.participant.totalMinionsKilled + matchInfo.participant.neutralMinionsKilled} CS</p>
+                                <p className={styles.cs_bracket}>&#40;</p>
+                                <p style={csStyle}>{Math.round(((participant.totalMinionsKilled + participant.neutralMinionsKilled) / (props.gameDuration / 60)) * 10) / 10}</p>
+                                <p className={styles.cs_bracket}>&#41;</p>
+                            </div>
+                            {matchInfo.participant.visionScore > 0 && <p className={styles.vision_score}>{matchInfo.participant.visionScore} Vision</p>}
+                        </div>
+                        <div className={styles.outer_items_container}>
+                            <div className={styles.items_container}>
+                                <div className={styles.smaller_items_container}>
+                                    <div className={styles.item_container}>
+                                        {matchInfo.participant.item0 !== 0 && <Image src={`/../public/items/${matchInfo.participant.item0}.png`} width={200} height={200} />}
+                                    </div>
+                                    <div className={styles.item_container}>
+                                        {matchInfo.participant.item1 !== 0 && <Image src={`/../public/items/${matchInfo.participant.item1}.png`} width={200} height={200} />}
+                                    </div>
+                                    <div className={styles.item_container}>
+                                        {matchInfo.participant.item2 !== 0 && <Image src={`/../public/items/${matchInfo.participant.item2}.png`} width={200} height={200} />}
+                                    </div>
+                                </div>
+                                <div className={styles.smaller_items_container}>
+                                    <div className={styles.item_container}>
+                                        {matchInfo.participant.item3 !== 0 && <Image src={`/../public/items/${matchInfo.participant.item3}.png`} width={200} height={200} />}
+                                    </div>
+                                    <div className={styles.item_container}>
+                                        {matchInfo.participant.item4 !== 0 && <Image src={`/../public/items/${matchInfo.participant.item4}.png`} width={200} height={200} />}
+                                    </div>
+                                    <div className={styles.item_container}>
+                                        {matchInfo.participant.item5 !== 0 && <Image src={`/../public/items/${matchInfo.participant.item5}.png`} width={200} height={200} />}
+                                    </div>
+                                </div>
+                            </div>
+                            <div className={styles.trinket_container}>
+                                {matchInfo.participant.item6 !== 0 && <Image src={`/../public/items/${matchInfo.participant.item6}.png`} width={200} height={200} />}
+                            </div>
+                        </div>
+                    </div>
+                    <div className={styles.participants_container}>
+                        <div className={styles.team_container}>
+                            {firstTeam}
+                        </div>
+                        <div className={styles.team_container}>
+                            {secondTeam}
                         </div>
                     </div>
                 </div>}

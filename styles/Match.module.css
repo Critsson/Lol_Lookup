@@ -1,6 +1,7 @@
 .match_container {
     display: flex;
     align-items: center;
+    padding-right: .5vw;
 }
 
 .leftmost_container {
@@ -45,6 +46,7 @@
 }
 
 .champion_icon_container_victory {
+    margin-left: -.2vw;
     height: 3.5vw;
     width: 3.5vw;
     overflow: hidden;
@@ -56,6 +58,7 @@
 }
 
 .champion_icon_container_defeat {
+    margin-left: -.2vw;
     height: 3.5vw;
     width: 3.5vw;
     overflow: hidden;
@@ -84,7 +87,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: .2vw;;
+    border-radius: .2vw;
 }
 
 .perks_container {
@@ -121,6 +124,7 @@
     justify-content: center;
     flex-direction: column;
     width: 4.7vw;
+    margin-right: .2vw;
 }
 
 .kda_container {
@@ -132,16 +136,17 @@
 
 .killsandassists {
     color: white;
-    font-size: .9vw;
+    font-size: .8vw;
 }
 
 .deaths {
     color:#E84057;
-    font-size: .9vw;
+    font-size: .8vw;
 }
 
 .divider {
     color: #7e7e7e;
+    font-size: .8vw;
 }
 
 .kda_calc_container {
@@ -149,10 +154,136 @@
     align-items: center;
     justify-content: center;
     gap: .3vw;
+    margin-top: -1.3vw;
 }
 
 .kda_word {
     color: white;
     font-weight: 400;
-    font-size: .8vw;
+    font-size: .7vw;
+}
+
+.perfect {
+    margin-top: .7vw;
+}
+
+.cs_container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    margin-top: -1.2vw;
+}
+
+.cs {
+    font-size: .7vw;
+    margin-right: .1vw;
+}
+
+.cs_bracket {
+    font-size: .7vw;
+}
+
+.vision_score {
+    font-size: .7vw;
+    color: white;
+    margin-top: -.4vw;
+}
+
+.items_container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: .2vw;
+}
+
+.smaller_items_container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .2vw;
+}
+
+.item_container {
+    width: 1.72vw;
+    height: 1.72vw;
+    overflow: hidden;
+    border-radius: .3vw;
+    background-color: rgba(0, 0, 0, 0.418);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.outer_items_container {
+    display: flex;
+    align-items: center;
+    gap: .2vw;
+}
+
+.trinket_container {
+    width: 1.72vw;
+    height: 1.72vw;
+    border-radius: .3vw;
+    overflow: hidden;
+    margin-bottom: 1.9vw;
+}
+
+.participants_container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 1.5vw;
+    gap: 1vw;
+}
+
+.team_container {
+    display: flex;
+    align-items:flex-start;
+    justify-content: center;
+    flex-direction: column;
+    width: 6vw;
+}
+
+.participant_container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .2vw;
+    margin-top: -.4vw;
+}
+
+.non_selected_summoner_name {
+    font-size: .5vw;
+    color: white;
+    font-weight: 500;
+    letter-spacing: .02vw;
+}
+
+.selected_summoner_name {
+    font-size: .5vw;
+    color: white;
+    font-weight: 700;
+    letter-spacing: .02vw;
+}
+
+.non_selected_summoner_name:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.participant_icon_container {
+    width: .9vw;
+    height: .9vw;
+    overflow: hidden;
+    border-radius: .2vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.participant_icon_container > img {
+    width: 110%;
+    height: 110%;
 }
