@@ -115,7 +115,7 @@
     align-items: center;
     justify-content: center;
     border-radius: .2vw;
-    margin-bottom: .2vw;
+    margin-bottom: .1vw;
 }
 
 .score_container {
@@ -228,6 +228,10 @@
     border-radius: .3vw;
     overflow: hidden;
     margin-bottom: 1.9vw;
+    background-color: rgba(0, 0, 0, 0.418);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .participants_container {

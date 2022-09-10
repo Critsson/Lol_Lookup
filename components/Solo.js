@@ -20,7 +20,7 @@ export default function Solo(props) {
                         <div className={styles.title_container}>
                             <p>Ranked Solo</p>
                             <div className={styles.rank_icon}>
-                                <Image src={`/../public/ranks/${props.tier}.png`} height={300} width={300} />
+                                <Image alt="Rank" src={`/ranks/${props.tier}.png`} height={300} width={300} />
                             </div>
                         </div>
                         <div className={styles.rank_info}>

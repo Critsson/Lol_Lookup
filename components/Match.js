@@ -27,7 +27,7 @@ export default function Match(props) {
             firstTeam.push(
                 <div className={styles.participant_container}>
                     <div className={styles.participant_icon_container}>
-                        <img src={`/champion_icons/${props.participants[i].championName}.png`} />
+                        <img alt="Champion" src={`/champion_icons/${props.participants[i].championName}.png`} />
                     </div>
                     <p className={styles.selected_summoner_name}>{props.participants[i].summonerName}</p>
                 </div>
@@ -37,7 +37,7 @@ export default function Match(props) {
         firstTeam.push(
             <div className={styles.participant_container}>
                 <div className={styles.participant_icon_container}>
-                    <img src={`/champion_icons/${props.participants[i].championName}.png`} />
+                    <img alt="Champion" src={`/champion_icons/${props.participants[i].championName}.png`} />
                 </div>
                 <Link href={`/summoner/${props.region.toLowerCase()}/${props.participants[i].summonerName}`}>
                     <p className={styles.non_selected_summoner_name}>{props.participants[i].summonerName}</p>
@@ -51,7 +51,7 @@ export default function Match(props) {
             secondTeam.push(
                 <div className={styles.participant_container}>
                     <div className={styles.participant_icon_container}>
-                        <img src={`/champion_icons/${props.participants[i].championName}.png`} />
+                        <img alt="Champion" src={`/champion_icons/${props.participants[i].championName}.png`} />
                     </div>
                     <p className={styles.selected_summoner_name}>{props.participants[i].summonerName}</p>
                 </div>
@@ -61,7 +61,7 @@ export default function Match(props) {
         secondTeam.push(
             <div className={styles.participant_container}>
                 <div className={styles.participant_icon_container}>
-                    <img src={`/champion_icons/${props.participants[i].championName}.png`} />
+                    <img alt="Champion" src={`/champion_icons/${props.participants[i].championName}.png`} />
                 </div>
                 <Link href={`/summoner/${props.region.toLowerCase()}/${props.participants[i].summonerName}`}>
                     <p className={styles.non_selected_summoner_name}>{props.participants[i].summonerName}</p>
@@ -160,25 +160,25 @@ export default function Match(props) {
                     </div>
                     <div className={styles.champion_container}>
                         {matchInfo.won ? <div className={styles.champion_icon_container_victory}>
-                            <img className={styles.champion_icon} src={`/champion_icons/${matchInfo.participant.championName}.png`} />
+                            <img alt="Champion" className={styles.champion_icon} src={`/champion_icons/${matchInfo.participant.championName}.png`} />
                         </div> :
                             <div className={styles.champion_icon_container_defeat}>
-                                <img className={styles.champion_icon} src={`/champion_icons/${matchInfo.participant.championName}.png`} />
+                                <img alt="Champion" className={styles.champion_icon} src={`/champion_icons/${matchInfo.participant.championName}.png`} />
                             </div>}
                         <div className={styles.summs_container}>
                             <div className={styles.summ_container}>
-                                <Image src={`/../public/summoner_spells/${matchInfo.participant.summoner1Id}.png`} width={200} height={200} />
+                                <Image alt="Summoner Spell" src={`/summoner_spells/${matchInfo.participant.summoner1Id}.png`} width={200} height={200} />
                             </div>
                             <div className={styles.summ_container}>
-                                <Image src={`/../public/summoner_spells/${matchInfo.participant.summoner2Id}.png`} width={200} height={200} />
+                                <Image alt="Summoner Spell" src={`/summoner_spells/${matchInfo.participant.summoner2Id}.png`} width={200} height={200} />
                             </div>
                         </div>
                         <div className={styles.perks_container}>
                             <div className={styles.perk1_container}>
-                                <Image src={`/../public/perk_icons/${matchInfo.participant.perks.styles[0].selections[0].perk}.png`} width={200} height={200} />
+                                <Image alt="Perk" src={`/perk_icons/${matchInfo.participant.perks.styles[0].selections[0].perk}.png`} width={200} height={200} />
                             </div>
                             <div className={styles.perk2_container}>
-                                <Image src={`/../public/perk_icons/${matchInfo.participant.perks.styles[1].style}.png`} width={200} height={200} />
+                                <Image alt="Perk" src={`/perk_icons/${matchInfo.participant.perks.styles[1].style}.png`} width={200} height={200} />
                             </div>
                         </div>
                         <div className={styles.score_container}>
@@ -206,29 +206,29 @@ export default function Match(props) {
                             <div className={styles.items_container}>
                                 <div className={styles.smaller_items_container}>
                                     <div className={styles.item_container}>
-                                        {matchInfo.participant.item0 !== 0 && <Image src={`/../public/items/${matchInfo.participant.item0}.png`} width={200} height={200} />}
+                                        {matchInfo.participant.item0 !== 0 && <Image alt="Item" src={`/items/${matchInfo.participant.item0}.png`} width={200} height={200} />}
                                     </div>
                                     <div className={styles.item_container}>
-                                        {matchInfo.participant.item1 !== 0 && <Image src={`/../public/items/${matchInfo.participant.item1}.png`} width={200} height={200} />}
+                                        {matchInfo.participant.item1 !== 0 && <Image alt="Item" src={`/items/${matchInfo.participant.item1}.png`} width={200} height={200} />}
                                     </div>
                                     <div className={styles.item_container}>
-                                        {matchInfo.participant.item2 !== 0 && <Image src={`/../public/items/${matchInfo.participant.item2}.png`} width={200} height={200} />}
+                                        {matchInfo.participant.item2 !== 0 && <Image alt="Item" src={`/items/${matchInfo.participant.item2}.png`} width={200} height={200} />}
                                     </div>
                                 </div>
                                 <div className={styles.smaller_items_container}>
                                     <div className={styles.item_container}>
-                                        {matchInfo.participant.item3 !== 0 && <Image src={`/../public/items/${matchInfo.participant.item3}.png`} width={200} height={200} />}
+                                        {matchInfo.participant.item3 !== 0 && <Image alt="Item" src={`/items/${matchInfo.participant.item3}.png`} width={200} height={200} />}
                                     </div>
                                     <div className={styles.item_container}>
-                                        {matchInfo.participant.item4 !== 0 && <Image src={`/../public/items/${matchInfo.participant.item4}.png`} width={200} height={200} />}
+                                        {matchInfo.participant.item4 !== 0 && <Image alt="Item" src={`/items/${matchInfo.participant.item4}.png`} width={200} height={200} />}
                                     </div>
                                     <div className={styles.item_container}>
-                                        {matchInfo.participant.item5 !== 0 && <Image src={`/../public/items/${matchInfo.participant.item5}.png`} width={200} height={200} />}
+                                        {matchInfo.participant.item5 !== 0 && <Image alt="Item" src={`/items/${matchInfo.participant.item5}.png`} width={200} height={200} />}
                                     </div>
                                 </div>
                             </div>
                             <div className={styles.trinket_container}>
-                                {matchInfo.participant.item6 !== 0 && <Image src={`/../public/items/${matchInfo.participant.item6}.png`} width={200} height={200} />}
+                                {matchInfo.participant.item6 !== 0 && <Image alt="Item" src={`/items/${matchInfo.participant.item6}.png`} width={200} height={200} />}
                             </div>
                         </div>
                     </div>

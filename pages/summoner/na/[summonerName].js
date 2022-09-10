@@ -192,7 +192,7 @@ export async function getServerSideProps({ params, res }) {
 
     res.setHeader(
         "Cache-Control",
-        "public, s-maxage=604800"
+        "public, s-maxage=604800", "must-revalidate"
     )
 
     const { summonerName } = params
