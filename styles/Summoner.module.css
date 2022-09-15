@@ -48,7 +48,7 @@
     display: flex;
     align-items: center;
     gap: 1vw;
-    width: 21.3vw;
+    width: 100%;
 }
 
 .name_update_container {
@@ -94,7 +94,7 @@
     justify-content: center;
     border-radius: 50%;
     color: white;
-    left: 20.6vw;
+    left: 20.4vw;
     top: 15.1vw;
     font-size: .8vw;
     font-weight: 600;

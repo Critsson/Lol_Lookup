@@ -157,7 +157,7 @@ export default function SummonerPage({ summonerData, rankData, matchesData, matc
                                 <p>{summonerData.summonerLevel}</p>
                             </div>
                             <div className={styles.summoner_icon_container}>
-                                <img className={styles.summoner_icon} alt="Summoner Icon" src={`/profile_icons/${summonerData.profileIconId}.png`} />
+                                <img alt="Summoner Icon" className={styles.summoner_icon} src={`/profile_icons/${summonerData.profileIconId}.png`} />
                             </div>
                             <div className={styles.name_update_container}>
                                 <p>{summonerData.name}</p>
