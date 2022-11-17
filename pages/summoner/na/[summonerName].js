@@ -74,7 +74,7 @@ export default function SummonerPage({ summonerData, rankData, matchesData, matc
             </Head>
             <div className={styles.main_container}>
                 <Link href="/">
-                    <HomeSharpIcon className={styles.home_button} sx={{ fontSize: "3vw", color: "#FB3640", position: "absolute", bottom: "1vw", right: "1vw" }} />
+                    <HomeSharpIcon className={styles.home_button} sx={{ fontSize: "3vw", color: "#FB3640", position: "absolute",top: "1vw", right: "1vw" }} />
                 </Link>
                 {openedModal &&
                     <div onClick={closeModal} className={homeStyles.modal}>
@@ -161,7 +161,7 @@ export default function SummonerPage({ summonerData, rankData, matchesData, matc
                             </div>
                             <div className={styles.name_update_container}>
                                 <p>{summonerData.name}</p>
-                                <button className={styles.update_button}>
+                                <button className={styles.update_button} onClick={() => window.location.reload()}>
                                     <BrowserUpdatedIcon sx={{ fontSize: "1.5vw", color: "#F3E9DC" }} />
                                     Update
                                 </button>
@@ -179,6 +179,15 @@ export default function SummonerPage({ summonerData, rankData, matchesData, matc
                             <Match region={regionCounter} gameDuration={matchDataArray[1].info.gameDuration} gameMode={matchDataArray[1].info.gameMode}
                                 gameType={matchDataArray[1].info.gameType} mapId={matchDataArray[1].info.mapId} participants={matchDataArray[1].info.participants} puuid={summonerData.puuid}
                                 queueId={matchDataArray[1].info.queueId} />
+                            <Match region={regionCounter} gameDuration={matchDataArray[2].info.gameDuration} gameMode={matchDataArray[2].info.gameMode}
+                                gameType={matchDataArray[2].info.gameType} mapId={matchDataArray[2].info.mapId} participants={matchDataArray[2].info.participants} puuid={summonerData.puuid}
+                                queueId={matchDataArray[2].info.queueId} />
+                            <Match region={regionCounter} gameDuration={matchDataArray[3].info.gameDuration} gameMode={matchDataArray[3].info.gameMode}
+                                gameType={matchDataArray[3].info.gameType} mapId={matchDataArray[3].info.mapId} participants={matchDataArray[3].info.participants} puuid={summonerData.puuid}
+                                queueId={matchDataArray[3].info.queueId} />
+                            <Match region={regionCounter} gameDuration={matchDataArray[4].info.gameDuration} gameMode={matchDataArray[4].info.gameMode}
+                                gameType={matchDataArray[4].info.gameType} mapId={matchDataArray[4].info.mapId} participants={matchDataArray[4].info.participants} puuid={summonerData.puuid}
+                                queueId={matchDataArray[4].info.queueId} />
                         </div>
                     </div>
                 </div>
@@ -192,14 +201,14 @@ export async function getServerSideProps({ params, res }) {
 
     res.setHeader(
         "Cache-Control",
-        "public, s-maxage=604800", "must-revalidate"
+        "public, s-maxage=60", "must-revalidate"
     )
 
     const { summonerName } = params
     const fixedSummonerName = summonerName.replaceAll(" ", "%20")
     const summonerResponse = await fetch(`https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/${fixedSummonerName}?api_key=${process.env.RIOT_API}`)
     const summonerData = await summonerResponse.json()
-    const matchesResponse = await fetch(`https://americas.api.riotgames.com/lol/match/v5/matches/by-puuid/${summonerData.puuid}/ids?start=0&count=20&api_key=${process.env.RIOT_API}`)
+    const matchesResponse = await fetch(`https://americas.api.riotgames.com/lol/match/v5/matches/by-puuid/${summonerData.puuid}/ids?start=0&count=5&api_key=${process.env.RIOT_API}`)
     const matchesData = await matchesResponse.json()
     const rankResponse = await fetch(`https://na1.api.riotgames.com/lol/league/v4/entries/by-summoner/${summonerData.id}?api_key=${process.env.RIOT_API}`)
     const rankData = await rankResponse.json()

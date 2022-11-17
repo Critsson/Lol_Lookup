@@ -129,6 +129,48 @@ export default function Match(props) {
                     gameType: props.gameType, mapId: props.mapId, gameMode: "Ultimate Spellbook"
                 })
                 break;
+            case 1900:
+                setMatchInfo({
+                    participant: participant, won: won, participants: props.participants, gameDuration: `${Math.floor(props.gameDuration / 60)}m ${props.gameDuration % 60}s`,
+                    gameType: props.gameType, mapId: props.mapId, gameMode: "All Pick URF"
+                })
+                break;
+            case 2000:
+                setMatchInfo({
+                    participant: participant, won: won, participants: props.participants, gameDuration: `${Math.floor(props.gameDuration / 60)}m ${props.gameDuration % 60}s`,
+                    gameType: props.gameType, mapId: props.mapId, gameMode: "Tutorial"
+                })
+                break;
+            case 2010:
+                setMatchInfo({
+                    participant: participant, won: won, participants: props.participants, gameDuration: `${Math.floor(props.gameDuration / 60)}m ${props.gameDuration % 60}s`,
+                    gameType: props.gameType, mapId: props.mapId, gameMode: "Tutorial"
+                })
+                break;
+            case 2020:
+                setMatchInfo({
+                    participant: participant, won: won, participants: props.participants, gameDuration: `${Math.floor(props.gameDuration / 60)}m ${props.gameDuration % 60}s`,
+                    gameType: props.gameType, mapId: props.mapId, gameMode: "Tutorial"
+                })
+                break;
+            case 830:
+                setMatchInfo({
+                    participant: participant, won: won, participants: props.participants, gameDuration: `${Math.floor(props.gameDuration / 60)}m ${props.gameDuration % 60}s`,
+                    gameType: props.gameType, mapId: props.mapId, gameMode: "Intro AI"
+                })
+                break;
+            case 840:
+                setMatchInfo({
+                    participant: participant, won: won, participants: props.participants, gameDuration: `${Math.floor(props.gameDuration / 60)}m ${props.gameDuration % 60}s`,
+                    gameType: props.gameType, mapId: props.mapId, gameMode: "Beginner AI"
+                })
+                break;
+            case 850:
+                setMatchInfo({
+                    participant: participant, won: won, participants: props.participants, gameDuration: `${Math.floor(props.gameDuration / 60)}m ${props.gameDuration % 60}s`,
+                    gameType: props.gameType, mapId: props.mapId, gameMode: "Intermediate AI"
+                })
+                break;
             default:
                 setMatchInfo({
                     participant: participant, won: won, participants: props.participants, gameDuration: `${Math.floor(props.gameDuration / 60)}m ${props.gameDuration % 60}s`,

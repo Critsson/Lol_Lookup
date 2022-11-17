@@ -1,5 +1,5 @@
 .main_container {
-    height: 100vh;
+    height: 102vh;
     background-color: #231F20;
     display: flex;
     align-items: center;
@@ -11,6 +11,7 @@
     background-position: bottom;
     background-position-x: right;
     background-blend-mode: screen;
+    padding-bottom: 13vh;
 }
 
 .container {
@@ -94,7 +95,7 @@
     justify-content: center;
     border-radius: 50%;
     color: white;
-    left: 20.4vw;
+    left: 19.9vw;
     top: 15.1vw;
     font-size: .8vw;
     font-weight: 600;
